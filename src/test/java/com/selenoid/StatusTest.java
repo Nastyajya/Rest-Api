@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 
@@ -51,7 +52,7 @@ public class StatusTest {
                 .body("total", is(20));
     }
     @Test
-    void checkTotalWithBrowser() {
+    void checkTotalWithJsonSchema() {
         given()
                 .log().uri()
                 .log().method()
@@ -62,7 +63,8 @@ public class StatusTest {
                 .log().status()
                 .log().body()
                 .statusCode(200)
+                //.body(matchesJsonSchemaInClasspath("schemas/status-response-schema.json"))
                 .body("total", is(20))
-                .body("browser.chrome", hasKey("99.0"));
+                .body("browsers.chrome", hasKey("100.0"));
     }
 }
