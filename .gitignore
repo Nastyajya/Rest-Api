@@ -3,3 +3,5 @@
 /build
 *.class
 *.log
+gradlew
+gradlew.bat
