@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import static in.reqres.specs.Spec.*;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
+import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReqresExtendedTests {
@@ -107,9 +109,9 @@ public class ReqresExtendedTests {
     void testStatus() {
 
         step("Make request", () ->
-        given(pageSpec)
-                .delete("users/2")
-                .then()
-                .spec(responsePage));
+                given(pageSpec)
+                        .delete("users/2")
+                        .then()
+                        .spec(responsePage));
     }
 }
